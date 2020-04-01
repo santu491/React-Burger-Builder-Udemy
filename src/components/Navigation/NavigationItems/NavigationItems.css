@@ -4,7 +4,12 @@
     margin:0;
     align-items:center ;
     height: 100%;
-    list-style: none;
+    list-style: none; 
+    flex-flow: column;
+}
 
-
+@media(min-width:500px){
+    .NavigationItems{
+        flex-flow:row
+    }
 }
