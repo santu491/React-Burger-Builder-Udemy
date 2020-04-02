@@ -5,23 +5,30 @@ import Toolbar from '../Navigation/Toolbar/Toolbar'
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer'
 
 class Layout extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-             showsidedrawer:true
+        this.state = {
+            showsidedrawer: true,
         }
     }
-    sideDrawerClosedHandler=()=>{
+    sideDrawerClosedHandler = () => {
         this.setState({
-            showsidedrawer:false
+            showsidedrawer: false
         })
+    }
+
+    drawertTogglehandler = () => {
+        this.setState((prevState) => {
+            return { showsidedrawer: !prevState.showsidedrawer }
+        })
+
     }
 
     render() {
         return (
             <Aux>
 
-                <Toolbar />
+                <Toolbar drawertTogglehandler={this.drawertTogglehandler} />
                 <SideDrawer open={this.state.showsidedrawer} closed={this.sideDrawerClosedHandler} />
                 <div>Toolbar, Sidebar, backdrop</div>
                 <main className="Container">{this.props.children}</main>
