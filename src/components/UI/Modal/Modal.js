@@ -1,6 +1,6 @@
 import React, { createFactory } from 'react'
 import classes from './Modal.css'
-import Aux from '../../../hoc/Aux'
+import Aux from '../../../hoc/Aux/Aux'
 import BackDrop from '../BackDrop/BackDrop'
 
 
