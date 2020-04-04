@@ -98,29 +98,40 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinued = () => {
-        this.setState({ loading: true })
-        let data = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: "santosh",
-                address: {
-                    state: "A.p",
-                    country: "India"
-                },
-                deliveryMethod: "fast"
-            }
+        // this.setState({ loading: true })
+        // let data = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: "santosh",
+        //         address: {
+        //             state: "A.p",
+        //             country: "India"
+        //         },
+        //         deliveryMethod: "fast"
+        //     }
 
+        // }
+
+        // axios.post('/orders.json', data).then((response) => {
+        //     console.log("response", response)
+        //     this.setState({ loading: false, isPurchase: false })
+        // }).catch((e) => {
+        //     console.log("error", e)
+        //     this.setState({ loading: false, isPurchase: false })
+        // })
+        // // alert("continued")
+
+        let queryParams=[]
+        for(let i in this.state.ingredients){
+            queryParams.push(encodeURIComponent(i)+"="+encodeURIComponent(this.state.ingredients[i]))
         }
-
-        axios.post('/orders.json', data).then((response) => {
-            console.log("response", response)
-            this.setState({ loading: false, isPurchase: false })
-        }).catch((e) => {
-            console.log("error", e)
-            this.setState({ loading: false, isPurchase: false })
+        queryParams.push('price='+this.state.totalPrice)
+        const querystring=queryParams.join('&')
+        this.props.history.push({
+            pathname:'/checkout',
+            search:'?'+querystring,
         })
-        // alert("continued")
     }
 
     componentDidMount() {
