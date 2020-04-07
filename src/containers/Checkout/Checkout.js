@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import ContactData from '../../containers/Checkout/ContactData/ContactData'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import axios from '../../axios-orders'
+import withErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler'
+
 class Checkout extends Component {
     constructor(props) {
         super(props);
@@ -57,8 +60,22 @@ class Checkout extends Component {
 
 
     render() {
+        // let summary = <Redirect to="/" />
+        // if (this.props.ingredients) {
+        //     summary =
+        //         <div>
+        //             <CheckoutSummary ingredients={this.props.ingredients}
+        //                 checkoutCancel={this.checkoutCancel}
+        //                 checkoutContinue={this.checkoutContinue}
+
+        //             />
+        //             {/* <Route path={this.props.match.path+"/contact-data"} component={ContactData}/> */}
+        //             <Route path={this.props.match.path + "/contact-data"} render={(props) => (<ContactData ingredients={this.props.ingredients} totalPrice={this.props.totalPrice} {...props} />)} />
+        //         </div>
+        // }
         return (
-            <div>
+        //    summary 
+                 <div>
                 <CheckoutSummary ingredients={this.props.ingredients}
                     checkoutCancel={this.checkoutCancel}
                     checkoutContinue={this.checkoutContinue}
@@ -71,11 +88,12 @@ class Checkout extends Component {
     }
 }
 
-const mapStateToProps=(state)=>{
-    return{
-        ingredients:state.burgerBuilder.ingredients,
-        totalPrice:state.burgerBuilder.totalPrice
+const mapStateToProps = (state) => {
+    return {
+        ingredients: state.burgerBuilder.ingredients,
+        totalPrice: state.burgerBuilder.totalPrice,
     }
 }
 
+// export default connect(mapStateToProps)(withErrorHandler(Checkout,axios))
 export default connect(mapStateToProps)(Checkout)

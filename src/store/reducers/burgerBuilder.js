@@ -54,7 +54,8 @@ export const burgerBuilderReducer = (state = initialState, action) => {
                         bacon: action.payload.bacon,
                         cheese: action.payload.cheese,
                         meat: action.payload.meat
-                    }
+                    },
+                    totalPrice:4
                 }
                 case actionType.FETCH_INGREDIENT_FALIURE:
                     return{
