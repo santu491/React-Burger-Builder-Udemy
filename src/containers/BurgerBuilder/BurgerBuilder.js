@@ -8,7 +8,7 @@ import OredrSummary from '../../components/Burger/OrderSummary/OrderSummary'
 import axios from '../../axios-orders'
 import WithErrorhandler from '../../hoc/WithErrorHandler/WithErrorHandler'
 import {connect} from 'react-redux'
-import * as actionType from '../../store/actions'
+import * as actionType from '../../store/actions/actionTypes'
 
 
 const INGREDIENT_PRICES = {
