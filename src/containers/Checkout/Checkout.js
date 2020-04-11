@@ -6,24 +6,24 @@ import { connect } from 'react-redux'
 import axios from '../../axios-orders'
 import withErrorHandler from '../../hoc/WithErrorHandler/WithErrorHandler'
 
-class Checkout extends Component {
-    constructor(props) {
-        super(props);
-        // this.state = {
-        //     // ingredients: {
-        //     //     salad: 1,
-        //     //     bacon: 1,
-        //     //     cheese: 2,
-        //     //     meat: 2
-        //     // },
-        //   //  ingredients:null,
-        //    // totalPrice:0
-        // }
+const Checkout=(props)=>{
+    // constructor(props) {
+    //     super(props);
+    //     // this.state = {
+    //     //     // ingredients: {
+    //     //     //     salad: 1,
+    //     //     //     bacon: 1,
+    //     //     //     cheese: 2,
+    //     //     //     meat: 2
+    //     //     // },
+    //     //   //  ingredients:null,
+    //     //    // totalPrice:0
+    //     // }
+    // }
+   const checkoutCancel = () => {
+        props.history.goBack()
     }
-    checkoutCancel = () => {
-        this.props.history.goBack()
-    }
-    checkoutContinue = () => {
+   const checkoutContinue = () => {
 
         // const queryParams = []
 
@@ -37,7 +37,7 @@ class Checkout extends Component {
         //     search: '?' + queryString,
         // })
 
-        this.props.history.replace('/checkout/contact-data')
+        props.history.replace('/checkout/contact-data')
     }
 
     // componentWillMount() {
@@ -59,7 +59,7 @@ class Checkout extends Component {
     // }
 
 
-    render() {
+
         // let summary = <Redirect to="/" />
         // if (this.props.ingredients) {
         //     summary =
@@ -76,16 +76,16 @@ class Checkout extends Component {
         return (
         //    summary 
                  <div>
-                <CheckoutSummary ingredients={this.props.ingredients}
-                    checkoutCancel={this.checkoutCancel}
-                    checkoutContinue={this.checkoutContinue}
+                <CheckoutSummary ingredients={props.ingredients}
+                    checkoutCancel={checkoutCancel}
+                    checkoutContinue={checkoutContinue}
 
                 />
                 {/* <Route path={this.props.match.path+"/contact-data"} component={ContactData}/> */}
-                <Route path={this.props.match.path + "/contact-data"} render={(props) => (<ContactData ingredients={this.props.ingredients} totalPrice={this.props.totalPrice} {...props} />)} />
+                <Route path={props.match.path + "/contact-data"} render={(props) => (<ContactData ingredients={props.ingredients} totalPrice={props.totalPrice} {...props} />)} />
             </div>
         )
-    }
+    
 }
 
 const mapStateToProps = (state) => {
